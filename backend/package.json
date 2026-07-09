@@ -1,10 +1,15 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "paraLM AI Research workspace backend",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+        "dev": "concurrently --kill-others-on-fail \"npm run chroma\" \"npm run server\"",
+    "chroma": "~/chromadb-venv/bin/chroma run --path ./chroma-data",
+    "server": "ts-node --project tsconfig.json src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+
   },
   "keywords": [],
   "author": "",
@@ -23,6 +28,7 @@
     "@types/pdf-parse": "^1.1.5",
     "@types/socket.io": "^3.0.1",
     "@types/uuid": "^10.0.0",
+    "concurrently": "^10.0.3",
     "nodemon": "^3.1.14",
     "ts-node": "^10.9.2",
     "tsx": "^4.23.0",
